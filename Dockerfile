@@ -29,9 +29,12 @@ RUN set -x && \
     curl -sSL https://cocl.us/sbt${SBT_VERSION//./}tgz | gunzip | tar --strip-components=1 -x -C $SBT_HOME && \
     cd /tmp  && \
     mkdir -p src/main/scala && \
-    echo \"object Main {}\" > src/main/scala/Main.scala && \
-    chmod +x test-sbt.sh && \
-    ./test-sbt.sh 
+    echo \"object Main {}\" > src/main/scala/Main.scala
+
+# && \
+
+#    chmod +x test-sbt.sh && \
+#    ./test-sbt.sh
 
 # Install kubectl
 # Note: Latest version may be found on:
