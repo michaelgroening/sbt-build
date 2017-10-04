@@ -31,8 +31,7 @@ RUN set -x && \
     mkdir -p src/main/scala && \
     echo \"object Main {}\" > src/main/scala/Main.scala && \
     chmod +x test-sbt.sh && \
-    ./test-sbt.sh && \
-    rm -rf *
+    ./test-sbt.sh 
 
 # Install kubectl
 # Note: Latest version may be found on:
