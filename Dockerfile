@@ -20,21 +20,12 @@ RUN set -x && \
     cat /etc/alpine-release
 
 # Install sbt
-ADD test-sbt.sh  /tmp
 RUN set -x && \
     curl -sSL https://downloads.typesafe.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.tgz | tar xfz - -C /root/ && \
     echo >> /root/.bashrc && \
     echo 'export PATH=~/scala-$SCALA_VERSION/bin:$PATH' >> /root/.bashrc && \
     mkdir $SBT_HOME && \
-    curl -sSL https://cocl.us/sbt${SBT_VERSION//./}tgz | gunzip | tar --strip-components=1 -x -C $SBT_HOME && \
-    cd /tmp  && \
-    mkdir -p src/main/scala && \
-    echo \"object Main {}\" > src/main/scala/Main.scala
-
-# && \
-
-#    chmod +x test-sbt.sh && \
-#    ./test-sbt.sh
+    curl -sSL https://cocl.us/sbt${SBT_VERSION//./}tgz | gunzip | tar --strip-components=1 -x -C $SBT_HOME
 
 # Install kubectl
 # Note: Latest version may be found on:
