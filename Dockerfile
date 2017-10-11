@@ -40,7 +40,7 @@ RUN set -x && \
     \
     # Create non-root user (with a randomly chosen UID/GUI).
     adduser kubectl -Du 2342 -h /config && \
-    \
+    env &&\
     # Basic check it works.
     kubectl version --client
 
