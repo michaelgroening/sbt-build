@@ -4,6 +4,8 @@ ARG SCALA_VERSION=2.12.3
 ARG SBT_VERSION=0.13.16
 ENV SBT_HOME=/usr/local/sbt
 ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/jdk/bin:/usr/local/sbt/bin
+ENV KOPS_VERSION=1.7.0
+ENV KUBECTL_VERSION=v1.7.4
 
 # Install docker
 RUN set -x && \
@@ -27,10 +29,18 @@ RUN set -x && \
     mkdir $SBT_HOME && \
     curl -sSL https://cocl.us/sbt${SBT_VERSION//./}tgz | gunzip | tar --strip-components=1 -x -C $SBT_HOME
 
-# Install kubectl
+# Install kubectl and kops
 # Note: Latest version may be found on:
 # https://aur.archlinux.org/packages/kubectl-bin/
-ADD https://storage.googleapis.com/kubernetes-release/release/v1.6.4/bin/linux/amd64/kubectl /usr/local/bin/kubectl
+
+RUN apk --no-cache add ca-certificates \
+  && apk --no-cache add --virtual build-dependencies curl \
+  && curl -O --location --silent --show-error https://github.com/kubernetes/kops/releases/download/${KOPS_VERSION}/kops-linux-amd64 \
+  && mv kops-linux-amd64 /usr/local/bin/kops \
+  && curl -LO https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl \
+  && mv kubectl /usr/local/bin/kubectl \
+  && chmod +x /usr/local/bin/kops /usr/local/bin/kubectl \
+  && apk del --purge build-dependencies
 
 ENV HOME=/config
 
