@@ -9,7 +9,7 @@ FROM  openjdk:8u141-jdk
 
 ENV SCALA_VERSION 2.12.3
 ENV SBT_VERSION 0.13.16
-ENV DOCKER_VERSION=17.09.0~ce-0~debian
+# ENV DOCKER_VERSION=17.09.0~ce-0~debian
 
 # Scala expects this file
 RUN touch /usr/lib/jvm/java-8-openjdk-amd64/release
@@ -64,7 +64,6 @@ RUN set -x && \
     \
     # Create non-root user (with a randomly chosen UID/GUI).
     adduser kubectl -Du 2342 -h /config && \
-    env &&\
     kubectl version --client
 
 
