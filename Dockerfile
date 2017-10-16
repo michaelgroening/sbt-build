@@ -9,6 +9,7 @@ FROM  openjdk:8u141-jdk
 
 ENV SCALA_VERSION 2.12.3
 ENV SBT_VERSION 0.13.16
+ENV KOPS_VERSION 1.7.1
 # ENV DOCKER_VERSION=17.09.0~ce-0~debian
 
 # Scala expects this file
