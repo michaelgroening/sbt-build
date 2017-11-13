@@ -7,6 +7,7 @@ ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/jdk/b
 ENV KOPS_VERSION=1.7.1
 ENV KUBECTL_VERSION=v1.8.3
 
+
 # Install docker
 RUN set -x && \
     apk add --no-cache docker
