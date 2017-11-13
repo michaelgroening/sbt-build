@@ -1,11 +1,11 @@
 FROM anapsix/alpine-java:8_jdk
 
-ARG SCALA_VERSION=2.12.3
+ARG SCALA_VERSION=2.12.4
 ARG SBT_VERSION=0.13.16
 ENV SBT_HOME=/usr/local/sbt
 ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/jdk/bin:/usr/local/sbt/bin
-ENV KOPS_VERSION=1.7.0
-ENV KUBECTL_VERSION=v1.7.4
+ENV KOPS_VERSION=1.7.1
+ENV KUBECTL_VERSION=v1.8.3
 
 # Install docker
 RUN set -x && \
