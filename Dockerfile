@@ -7,9 +7,10 @@
 # Pull base image
 FROM  openjdk:8u141-jdk
 
-ENV SCALA_VERSION 2.12.3
+ENV SCALA_VERSION 2.12.4
 ENV SBT_VERSION 0.13.16
 ENV KOPS_VERSION 1.7.1
+ENV KUBECTL_VERSION=v1.8.3
 # ENV DOCKER_VERSION=17.09.0~ce-0~debian
 
 # Scala expects this file
@@ -54,7 +55,7 @@ RUN ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws && \
 RUN set -x \
   && curl -O --location --silent --show-error https://github.com/kubernetes/kops/releases/download/${KOPS_VERSION}/kops-linux-amd64 \
   && mv kops-linux-amd64 /usr/local/bin/kops \
-  && curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl \
+  && curl -LO https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl \
   && mv kubectl /usr/local/bin/kubectl \
   && chmod +x /usr/local/bin/kops /usr/local/bin/kubectl
 
